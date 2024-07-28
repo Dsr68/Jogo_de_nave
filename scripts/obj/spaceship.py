@@ -45,8 +45,8 @@ class SpaceShip(Obj):
             self.direction_shot = "rigth"
         else:
             self.direction.x = 0
-        
-        if key[pygame.K_SPACE]:
+        event = pygame.mouse.get_pressed()
+        if event[0] == True:
             self.ticks += 1
             if self.ticks > 30:
                 self.ticks = 0

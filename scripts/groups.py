@@ -27,23 +27,3 @@ class Enemy(Obj):
         self.destruction()
         self.limits()
         self.move()
-
-class Enemy_square(Obj):
-
-    def __init__(self, img, pos, *groups):
-        super().__init__(img, pos, *groups)
-
-        self.speed = 1
-        self.life = 1
-    
-    def limits(self):
-        if self.rect.y > HEIGHT + self.image.get_height():
-            self.kill()
-    
-    def move(self):
-        self.rect.x += self.speed
-        self.rect.y += self.speed
-
-    def update(self):
-        self.limits()
-        self.move()

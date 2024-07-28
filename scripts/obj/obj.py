@@ -16,7 +16,7 @@ class Obj(pygame.sprite.Sprite):
         self.tick = 0
     
     def animation(self, speed, n_img, path):
-        self.tick += 1
+        self.tick += 10
         if self.tick > speed:
             self.tick = 0
             self.frame = (self.frame + 1) % n_img
@@ -27,7 +27,7 @@ class Obj(pygame.sprite.Sprite):
     
     def up(self, speed, path):
         
-        self.tick += 1
+        self.tick += 10
         if self.tick > speed:
             self.tick = 0
             self.frame_up = (self.frame_up + 1) % 2
@@ -35,7 +35,7 @@ class Obj(pygame.sprite.Sprite):
     
     def left(self, speed, path):
         
-        self.tick += 1
+        self.tick += 10
         if self.tick > speed:
             if self.frame_left == 2:
                 self.frame_left += 1
@@ -47,7 +47,7 @@ class Obj(pygame.sprite.Sprite):
 
     def rigth(self, speed, path):
         
-        self.tick += 1
+        self.tick += 10
         if self.tick > speed:
             if self.frame_right == 4:
                 self.frame_right += 1

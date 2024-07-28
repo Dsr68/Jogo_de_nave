@@ -39,9 +39,8 @@ class Game(Scene):
     
     def spaw_enemy(self):
         #self.tick += 1
-        enemy = SmallShip("assets/nave/enemy0.png",[100, 100], [self.all_sprites, self.enemy_colision])
-        pos_square = [int((256/enemy.rect.x))+1024, int(288/enemy.rect.y)+436] 
-        Square("assets/square/square0.png", pos_square, [self.all_sprites, self.enemy_square])
+        enemy = SmallShip("assets/nave/enemy0.png",[100, -3600], [self.all_sprites, self.enemy_colision])
+        Square("assets/square/square0.png", enemy.rect,)
         #self.tick = 0
 
     def colision(self):
@@ -83,7 +82,7 @@ class Game(Scene):
         self.spaceship.shots.draw(self.display)
         self.spaceship.shots.update()
         self.colision()
-        self.bg.update()
+        #self.bg.update()
         self.spaceship.input()
         self.damage.draw()
         self.p_text.draw()
