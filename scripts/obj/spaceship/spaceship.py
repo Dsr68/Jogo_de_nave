@@ -1,5 +1,5 @@
 import pygame
-from scripts.obj.front import Shot_h_left, Shot_h_rigth, Shot_v_down, Shot_v_up
+from scripts.obj.spaceship.front import Shot_h_left, Shot_h_rigth, Shot_v_down, Shot_v_up
 from scripts.obj.obj import Obj
 from scripts.settings import HEIGHT, WIDTH
 

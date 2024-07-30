@@ -1,4 +1,4 @@
-from scripts.groups import Enemy
+from scripts.groups.enemys import Enemy
 
 class SmallShip(Enemy):
 

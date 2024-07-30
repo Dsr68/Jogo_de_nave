@@ -22,9 +22,6 @@ class Obj(pygame.sprite.Sprite):
             self.tick = 0
             self.frame = (self.frame + 1) % n_img
             self.image = pygame.image.load(path+ str(self.frame) + ".png")
-
-    def animation_square(self, path):
-        self.image = pygame.image.load(path)
     
     def up(self, speed, path):
         
@@ -59,9 +56,9 @@ class Obj(pygame.sprite.Sprite):
             self.image = pygame.image.load(path+ str(self.frame_right) + ".png")
 
     def down(self, speed, path):
-        
+        self.tick += 10
         if self.tick > speed:
             self.image = pygame.image.load(path + str(self.frame_down) + ".png")
     
-    def view_radar(self, path):
-        self.image = pygame.image.load(path)
+    def draw_asteroide(self, img):
+        self.asteroide1 = pygame.image.load(img)

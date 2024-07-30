@@ -2,7 +2,7 @@ import pygame
 from scripts.animations.explosion import Explosion
 from scripts.mapas.mapa1 import BG
 from scripts.obj.smallship import SmallShip
-from scripts.obj.spaceship import SpaceShip
+from scripts.obj.spaceship.spaceship import SpaceShip
 from scripts.scene.scene import Scene
 from scripts.settings import *
 from scripts.text import Text
@@ -11,10 +11,7 @@ class Game(Scene):
 
     def __init__(self):
         super().__init__()
-
-        self.surface = pygame.display.get_surface()
-        self.area = "area1"
-        
+    
         self.bg = BG()
 
         self.number = 100
@@ -30,15 +27,8 @@ class Game(Scene):
         
         self.powerups = pygame.sprite.Group()
 
-        self.spaw()
-
         self.music = pygame.mixer.Sound("assets/sounds/bg.ogg")
         self.music.play(-1)
-    
-    def spaw(self):
-        #self.tick += 1
-        SmallShip("assets/nave/enemy0.png",[100, -3600], [self.all_sprites, self.enemy_colision])
-        #self.tick = 0
     
     def change_map(self):
         
