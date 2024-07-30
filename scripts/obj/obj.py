@@ -4,6 +4,7 @@ class Obj(pygame.sprite.Sprite):
     def __init__(self, img, pos, *groups) -> None:
         super().__init__(*groups)
 
+        
         self.image = pygame.image.load(img)
         self.rect = self.image.get_rect(topleft = pos)
         self.frame = 0
@@ -57,8 +58,10 @@ class Obj(pygame.sprite.Sprite):
             self.frame_right = int((self.frame_right + 5) / 2)
             self.image = pygame.image.load(path+ str(self.frame_right) + ".png")
 
-    def down(self, path):
-        self.image = pygame.image.load(path + str(self.frame_down) + ".png")
+    def down(self, speed, path):
+        
+        if self.tick > speed:
+            self.image = pygame.image.load(path + str(self.frame_down) + ".png")
     
     def view_radar(self, path):
         self.image = pygame.image.load(path)

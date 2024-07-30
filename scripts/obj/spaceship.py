@@ -1,5 +1,5 @@
 import pygame
-from scripts.front import Shot_h_left, Shot_h_rigth, Shot_v_down, Shot_v_up
+from scripts.obj.front import Shot_h_left, Shot_h_rigth, Shot_v_down, Shot_v_up
 from scripts.obj.obj import Obj
 from scripts.settings import HEIGHT, WIDTH
 
@@ -9,8 +9,9 @@ class SpaceShip(Obj):
     def __init__(self, img, pos, *groups):
         super().__init__(img, pos, *groups)
 
+        self.pos = pos
         self.direction = pygame.math.Vector2()
-        self.speed = 8
+        self.speed = 10
         self.frame = 0
         self.level = 1
         self.damage = 100
@@ -30,7 +31,7 @@ class SpaceShip(Obj):
             self.direction_shot = "up"
         elif key[pygame.K_s]:
             self.direction.y = 1
-            self.down("assets/nave1/nave10")
+            self.down(30, "assets/nave1/nave10")
             self.direction_shot = "down"
         else:
             self.direction.y = 0
@@ -48,7 +49,7 @@ class SpaceShip(Obj):
         event = pygame.mouse.get_pressed()
         if event[0] == True:
             self.ticks += 1
-            if self.ticks > 30:
+            if self.ticks > 5:
                 self.ticks = 0
                 sound = pygame.mixer.Sound("assets/sounds/shot.ogg")
                 sound.play()
@@ -77,8 +78,10 @@ class SpaceShip(Obj):
     def move(self):
 
         self.rect.center += self.direction * self.speed
+        
     
     def update(self):
         self.input()
         self.limit()
         self.move()
+    

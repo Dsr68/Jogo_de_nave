@@ -1,4 +1,4 @@
-import pygame
+
 from scripts.obj.obj import Obj
 from scripts.settings import HEIGHT
 
@@ -8,9 +8,6 @@ class AnimacaoBG:
         self.bg = Obj(img, pos1, group)
         self.bg2 = Obj(img, pos2, group)
         self.group = group
-
-    def draw_radar(self):
-        self.radar = Obj("assets/radar.png", [1024, 436], self.group)
 
     def update(self):
 
