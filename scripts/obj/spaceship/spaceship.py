@@ -9,12 +9,15 @@ class SpaceShip(Obj):
     def __init__(self, img, pos, *groups):
         super().__init__(img, pos, *groups)
 
-        self.pos = pos
+        self.surface = pygame.display.get_surface()
+        self.image = pygame.image.load(img)
         self.direction = pygame.math.Vector2()
         self.speed = 10
         self.frame = 0
         self.level = 1
         self.damage = 100
+        
+        self.fuel = 100
         
         self.shots = pygame.sprite.Group()
         self.direction_shot = "up"
@@ -29,10 +32,12 @@ class SpaceShip(Obj):
             self.direction.y = -1
             self.up(30,"assets/nave1/nave10")
             self.direction_shot = "up"
+            self.fuel -= 0.1
         elif key[pygame.K_s]:
             self.direction.y = 1
             self.down(30, "assets/nave1/nave10")
             self.direction_shot = "down"
+            self.fuel -= 0.1
         else:
             self.direction.y = 0
         
@@ -40,10 +45,12 @@ class SpaceShip(Obj):
             self.direction.x = -1
             self.left(30, "assets/nave1/nave10")
             self.direction_shot = "left"
+            self.fuel -= 0.1
         elif key[pygame.K_d]:
             self.direction.x = 1
             self.rigth(30, "assets/nave1/nave10")
             self.direction_shot = "rigth"
+            self.fuel -= 0.1
         else:
             self.direction.x = 0
         event = pygame.mouse.get_pressed()
@@ -78,10 +85,15 @@ class SpaceShip(Obj):
     def move(self):
 
         self.rect.center += self.direction * self.speed
-        
+
+    def draw(self):
+        self.surface.blit(self.image, self.rect)
     
     def update(self):
+        self.draw()
         self.input()
+        self.shots.draw(self.surface)
+        self.shots.update()
         self.limit()
         self.move()
     
