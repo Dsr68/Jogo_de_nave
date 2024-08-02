@@ -11,10 +11,6 @@ class SpaceShip(Obj):
 
         self.surface = pygame.display.get_surface()
         self.image = pygame.image.load(img)
-<<<<<<< HEAD
-=======
-        #self.pos = pos
->>>>>>> 7e26cb8 (Primeiro commit desktop)
         self.direction = pygame.math.Vector2()
         self.speed = 10
         self.frame = 0
@@ -92,10 +88,6 @@ class SpaceShip(Obj):
 
     def draw(self):
         self.surface.blit(self.image, self.rect)
-<<<<<<< HEAD
-=======
-        
->>>>>>> 7e26cb8 (Primeiro commit desktop)
     
     def update(self):
         self.draw()

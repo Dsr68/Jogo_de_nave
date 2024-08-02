@@ -1,8 +1,4 @@
 from scripts.mapas.area1 import BG1
-<<<<<<< HEAD
-=======
-from scripts.obj.spaceship.spaceship import SpaceShip
->>>>>>> 7e26cb8 (Primeiro commit desktop)
 from scripts.scene.scene import Scene
 from scripts.settings import HEIGHT, WIDTH
 
@@ -20,10 +16,6 @@ class BG(Scene):
        
     def update(self):
         self.draw()
-<<<<<<< HEAD
-=======
-
->>>>>>> 7e26cb8 (Primeiro commit desktop)
         
         
 
