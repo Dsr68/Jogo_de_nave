@@ -15,16 +15,15 @@ class Game(Scene):
 
     def __init__(self):
         super().__init__()
-    
-        self.bg = BG()
-        self.spaceship = SpaceShip("assets/nave1/nave100.png", [600, 600], self.all_sprites)
+
+        self.bg = BG(BG1("assets/menu/espaco.png", [0, 0], self.all_sprites))
 
         self.number = 100
         self.text_demage = str(self.number) + " %"
         self.damage = Text("assets/fonts/airstrike.ttf",25,"Damage: ", "white", [30,30])
         self.p_text = Text("assets/fonts/airstrike.ttf", 25, self.text_demage, "white", [180, 30])
 
-        self.number_fuel = self.spaceship.fuel
+        self.number_fuel = self.bg.spaceship.fuel
         self.fuel = Text("assets/fonts/airstrike.ttf",25,"Fuel: ", "white", [30,70])
         self.f_text = Text("assets/fonts/airstrike.ttf", 25, str(self.number_fuel) + " S", "white", [180, 70])
 
@@ -40,7 +39,7 @@ class Game(Scene):
 
     def change(self):
         
-        self.number_fuel = self.spaceship.fuel
+        self.number_fuel = self.bg.spaceship.fuel
         self.f_text = Text("assets/fonts/airstrike.ttf", 25, "{:.2f}".format(self.number_fuel) + " S", "white", [180, 70])
 
     def change_map(self, spaceship):
@@ -88,7 +87,7 @@ class Game(Scene):
                 self.bg.area = "area3"
                 spaceship.rect.x = 1280
                 spaceship.rect.y = spaceship.rect.y
-                self.bg.bg = BG1("assets/menu/espaco.png", [0, 0], self.all_sprites)
+                self.bg.bg = BG3("assets/menu/espaco.png", [0, 0], self.all_sprites)
                elif spaceship.rect.y > HEIGHT - spaceship.image.get_height():
                  self.bg.area = "area1"
                  spaceship.rect.x = spaceship.rect.x
@@ -97,7 +96,7 @@ class Game(Scene):
 
                
     def colision(self):
-        for shot in self.spaceship.shots:
+        for shot in self.bg.spaceship.shots:
             for enemy in self.enemy_colision:
                 if shot.rect.colliderect(enemy.rect):
                     shot.kill()
@@ -127,14 +126,15 @@ class Game(Scene):
                 sound.play()'''
 
     def gameover(self):
-        if self.spaceship.damage <= 0:
+        if self.bg.spaceship.damage <= 0:
             self.music.stop()
             self.active = False
                 
     def update(self):
         self.change()
         self.bg.update()
-        self.change_map(self.spaceship)
+        self.bg.bg.draw()
+        self.change_map(self.bg.spaceship)
         self.change()
         self.colision()
         self.damage.draw()

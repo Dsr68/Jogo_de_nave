@@ -6,7 +6,7 @@ class Shot_v_up(Obj):
     def __init__(self, img, pos, *groups):
         super().__init__(img, pos, *groups)
 
-        self.speed = 15
+        self.speed = 60
     
     def update(self):
         self.rect.y -= self.speed
@@ -19,7 +19,7 @@ class Shot_v_down(Obj):
     def __init__(self, img, pos, *groups):
         super().__init__(img, pos, *groups)
 
-        self.speed = 15
+        self.speed = 60
     
     def update(self):
         self.rect.y += self.speed
@@ -32,7 +32,7 @@ class Shot_h_left(Obj):
     def __init__(self, img, pos, *groups):
         super().__init__(img, pos, *groups)
 
-        self.speed = 15
+        self.speed = 60
     
     def update(self):
         self.rect.x -= self.speed
@@ -46,7 +46,7 @@ class Shot_h_rigth(Obj):
     def __init__(self, img, pos, *groups):
         super().__init__(img, pos, *groups)
 
-        self.speed = 15
+        self.speed = 60
     
     def update(self):
         self.rect.x += self.speed

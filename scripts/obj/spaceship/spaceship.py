@@ -12,7 +12,7 @@ class SpaceShip(Obj):
         self.surface = pygame.display.get_surface()
         self.image = pygame.image.load(img)
         self.direction = pygame.math.Vector2()
-        self.speed = 10
+        self.speed = 30
         self.frame = 0
         self.level = 1
         self.damage = 100
@@ -30,12 +30,12 @@ class SpaceShip(Obj):
 
         if key[pygame.K_w]:
             self.direction.y = -1
-            self.up(30,"assets/nave1/nave10")
+            self.up(8,"assets/nave1/nave10")
             self.direction_shot = "up"
             self.fuel -= 0.1
         elif key[pygame.K_s]:
             self.direction.y = 1
-            self.down(30, "assets/nave1/nave10")
+            self.down(8, "assets/nave1/nave10")
             self.direction_shot = "down"
             self.fuel -= 0.1
         else:
@@ -43,12 +43,12 @@ class SpaceShip(Obj):
         
         if key[pygame.K_a]:
             self.direction.x = -1
-            self.left(30, "assets/nave1/nave10")
+            self.left(8, "assets/nave1/nave10")
             self.direction_shot = "left"
             self.fuel -= 0.1
         elif key[pygame.K_d]:
             self.direction.x = 1
-            self.rigth(30, "assets/nave1/nave10")
+            self.rigth(8, "assets/nave1/nave10")
             self.direction_shot = "rigth"
             self.fuel -= 0.1
         else:
@@ -85,12 +85,8 @@ class SpaceShip(Obj):
     def move(self):
 
         self.rect.center += self.direction * self.speed
-
-    def draw(self):
-        self.surface.blit(self.image, self.rect)
     
     def update(self):
-        self.draw()
         self.input()
         self.shots.draw(self.surface)
         self.shots.update()
