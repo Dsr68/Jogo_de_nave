@@ -37,6 +37,7 @@ class Game(Scene):
 
         self.music = pygame.mixer.Sound("assets/sounds/bg.ogg")
         self.music.play(-1)
+<<<<<<< HEAD
 
     def change(self):
         
@@ -95,6 +96,65 @@ class Game(Scene):
                  spaceship.rect.y = spaceship.image.get_height()
                  self.bg.bg = BG1("assets/menu/espaco.png", [0, 0], self.all_sprites)
 
+=======
+    
+    def change(self):
+        
+       if self.bg.area == "area1":
+               if self.spaceship.rect.x < 0:
+                self.bg.bg.area = "area2"
+                self.spaceship.rect.x= 1280 - self.spaceship.image.get_width()
+                self.spaceship.rect.y = self.spaceship.rect.y
+                pos = [self.spaceship.rect.x, self.spaceship.rect.y]
+                self.bg.bg = BG2(self.bg.img, self.bg.pos, self.all_sprites)
+               elif self.spaceship.rect.y < 0:
+                 self.bg.bg.area = "area4"
+                 self.spaceship.rect.x= self.spaceship.rect.x
+                 self.spaceship.rect.y = 720 - self.spaceship.image.get_height()
+                 pos = [self.spaceship.rect.x, self.spaceship.rect.y]
+                 self.bg.bg = BG4(self.bg.img, self.bg.pos, self.all_sprites)
+
+       if self.bg.area == "area2":
+               if self.spaceship.rect.x > WIDTH - self.spaceship.image.get_width():
+                self.bg.bg.area = "area1"
+                self.spaceship.rect.x= 0
+                self.spaceship.rect.y = self.spaceship.rect.y
+                pos = [self.spaceship.rect.x, self.spaceship.rect.y]
+                self.bg.bg = BG1(self.bg.img, self.bg.pos, self.all_sprites)
+               elif self.spaceship.rect.y < 0:
+                 self.bg.bg.area = "area3"
+                 self.spaceship.rect.x= self.spaceship.rect.x
+                 self.spaceship.rect.y = 720 - self.spaceship.image.get_width()
+                 pos = [self.spaceship.rect.x, self.spaceship.rect.y]
+                 self.bg.bg = BG3(self.bg.img, self.bg.pos, self.all_sprites)
+        
+       if self.bg.area == "area3":
+               if self.spaceship.rect.x > WIDTH - self.spaceship.image.get_width():
+                self.bg.bg.area = "area4"
+                self.spaceship.rect.x= 0
+                self.spaceship.rect.y = self.spaceship.rect.y
+                pos = [self.spaceship.rect.x, self.spaceship.rect.y]
+                self.bg.bg = BG4(self.bg.img, self.bg.pos, self.all_sprites)
+               elif self.spaceship.rect.y > HEIGHT - self.spaceship.image.get_width():
+                 self.bg.bg.area = "area2"
+                 self.spaceship.rect.x= self.spaceship.rect.x + self.spaceship.image.get_width()
+                 self.spaceship.rect.y = 0
+                 pos = [self.spaceship.rect.x, self.spaceship.rect.y]
+                 self.bg.bg = BG2(self.bg.img, self.bg.pos, self.all_sprites)
+       if self.bg.area == "area4":
+               if self.spaceship.rect.x < 0:
+                self.bg.bg.area = "area3"
+                self.spaceship.rect.x= 1280
+                self.spaceship.rect.y = self.spaceship.rect.y
+                pos = [self.spaceship.rect.x, self.spaceship.rect.y]
+                self.bg.bg = BG1(self.bg.img, self.bg.pos, self.all_sprites)
+               elif self.spaceship.rect.y > HEIGHT - self.spaceship.image.get_height():
+                 self.bg.bg.area = "area1"
+                 self.spaceship.rect.x= self.spaceship.rect.x
+                 self.spaceship.rect.y = self.spaceship.image.get_height()
+                 pos = [self.spaceship.rect.x, self.spaceship.rect.y]
+                 self.bg.bg = BG1(self.bg.img, self.bg.pos, self.all_sprites)
+>>>>>>> 7e26cb8 (Primeiro commit desktop)
                
     def colision(self):
         for shot in self.spaceship.shots:
@@ -111,9 +171,9 @@ class Game(Scene):
                         Explosion("assets/explosion/0.png",[x, y], [self.all_sprites])
         
         for enemy in self.enemy_colision:
-            if self.bg.spaceship.rect.colliderect(enemy.rect):
+            if self.spaceship.rect.colliderect(enemy.rect):
                 enemy.kill()
-                self.bg.spaceship.damage -= 20
+                self.spaceship.damage -= 20
                 self.number -= 20
                 self.p_text.update_text(str(self.number)+"%")
                 sound = pygame.mixer.Sound("assets/sounds/damage.ogg")
@@ -132,9 +192,16 @@ class Game(Scene):
             self.active = False
                 
     def update(self):
+        self.change()
         self.bg.update()
+<<<<<<< HEAD
         self.change_map(self.spaceship)
         self.change()
+=======
+        self.spaceship.update()
+        self.spaceship.shots.draw(self.display)
+        self.spaceship.shots.update()
+>>>>>>> 7e26cb8 (Primeiro commit desktop)
         self.colision()
         self.damage.draw()
         self.p_text.draw()
