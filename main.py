@@ -1,4 +1,6 @@
-from scripts.startGame import StartGame
+
+from controller.startGame import StartGame
+
 
 if __name__ == "__main__":
     game = StartGame()
