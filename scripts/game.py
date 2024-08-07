@@ -11,7 +11,7 @@ class Game(Scene):
         super().__init__()
 
         self.bg = AnimationMenu("assets/menu/espaco.png", [0, 0], [0, -720], self.all_sprites)
-        self.spaceship = Spaceship("assets/nave1/nave100.png", [600, 600], self.all_sprites)
+        self.spaceship = Spaceship("assets/nave1/up/nave100.png", [600, 600], self.all_sprites)
 
         self.enemy_colision = pygame.sprite.Group()
         Enemy("assets/nave/enemy0.png", [600, 0], [self.all_sprites, self.enemy_colision])
@@ -27,7 +27,9 @@ class Game(Scene):
         for enemy in self.enemy_colision:
             if self.spaceship.rect.colliderect(enemy.rect):
                 enemy.kill()
-                self.spaceship.life -= 1
+                self.spaceship.v_demange -= 20
+                self.spaceship.format_demage = str(self.spaceship.v_demange)
+                self.spaceship.demage_valor.update(self.spaceship.format_demage+"%")
                 print(self.spaceship.life)
 
     def gameover(self):
