@@ -1,5 +1,5 @@
 import pygame
-from scripts.animations.animationBG import AnimationMenu
+from scripts.animations.animationMap import AnimationMap
 from scripts.bases.enemy import Enemy
 from scripts.nave.spaceship import Spaceship
 from scripts.bases.scene import Scene
@@ -10,8 +10,8 @@ class Game(Scene):
     def __init__(self):
         super().__init__()
 
-        self.bg = AnimationMenu("assets/menu/espaco.png", [0, 0], [0, -720], self.all_sprites)
-        self.spaceship = Spaceship("assets/nave1/up/nave100.png", [600, 600], self.all_sprites)
+        self.bg = AnimationMap("assets/menu/espaco.png", self.all_sprites)
+        self.spaceship = Spaceship("assets/nave1/up/nave100.png", self.bg, [600, 600], self.all_sprites)
 
         self.enemy_colision = pygame.sprite.Group()
         Enemy("assets/nave/enemy0.png", [600, 0], [self.all_sprites, self.enemy_colision])
@@ -39,7 +39,6 @@ class Game(Scene):
 
 
     def update(self):
-        self.bg.update()
         self.spaceship.input()
         self.spaceship.tiros.draw(self.display)
         self.spaceship.tiros.update()

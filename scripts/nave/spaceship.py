@@ -7,12 +7,13 @@ from scripts.text import Text
 
 class Spaceship(Obj):
 
-    def __init__(self, img, pos, *groups):
+    def __init__(self, img, background, pos, *groups):
         super().__init__(img, pos, *groups)
 
         self.direction = pygame.math.Vector2()
         self.speed = 10
         self.life = 3
+        self.bg = background
         self.side = "up"
 
         self.tiros = pygame.sprite.Group()
@@ -36,6 +37,7 @@ class Spaceship(Obj):
             self.direction.y = -1
             self.animation(8, 2, "assets/nave1/up/nave10"+str(self.frame)+".png")
             self.side = "up"
+            self.bg.update_up()
             self.cosume()    
         elif key[pygame.K_s]:
             self.direction.y = 1
