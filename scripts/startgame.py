@@ -9,7 +9,7 @@ class StartGame:
     def __init__(self):
 
         pygame.init()
-        pygame.mixer.init()
+        #pygame.mixer.init()
         pygame.font.init()
         
         self.display = pygame.display.set_mode([WIDTH,HEIGHT])

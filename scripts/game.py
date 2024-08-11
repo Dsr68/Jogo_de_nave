@@ -1,6 +1,7 @@
 import pygame
 from scripts.animations.animationMap import AnimationMap
 from scripts.bases.enemy import Enemy
+from scripts.bases.obj import Obj
 from scripts.nave.spaceship import Spaceship
 from scripts.bases.scene import Scene
 from scripts.settings import HEIGHT, WIDTH
@@ -43,5 +44,5 @@ class Game(Scene):
         self.spaceship.tiros.draw(self.display)
         self.spaceship.tiros.update()
         self.colision()
-        
+                
         return super().update()

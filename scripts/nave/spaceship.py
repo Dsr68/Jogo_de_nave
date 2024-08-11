@@ -11,7 +11,7 @@ class Spaceship(Obj):
         super().__init__(img, pos, *groups)
 
         self.direction = pygame.math.Vector2()
-        self.speed = 10
+        self.speed = 5
         self.life = 3
         self.bg = background
         self.side = "up"
@@ -43,6 +43,7 @@ class Spaceship(Obj):
             self.direction.y = 1
             self.image = pygame.image.load("assets/nave1/down/nave100.png")
             self.side = "down"
+            self.bg.update_down()
             self.cosume()
         else:
             self.direction.y = 0
@@ -52,12 +53,14 @@ class Spaceship(Obj):
             if key[pygame.K_a] != key[pygame.K_w] and key[pygame.K_a] != key[pygame.K_s]:
                 self.animation(8, 2, "assets/nave1/left/nave10"+str(self.frame)+".png")
                 self.side = "left"
+                self.bg.update_left()
             self.cosume()
         elif key[pygame.K_d]:
             self.direction.x = 1
             if key[pygame.K_d] != key[pygame.K_w] and key[pygame.K_d] != key[pygame.K_s]:
                 self.animation(8, 2, "assets/nave1/rigth/nave10"+str(self.frame)+".png")
                 self.side = "rigth"
+                self.bg.update_rigth()
             self.cosume()
         else:
             self.direction.x = 0
@@ -121,7 +124,7 @@ class Shot_vertical_up(Obj):
    def __init__(self, img, pos, *groups):
        super().__init__(img, pos, *groups)
 
-       self.speed = 20
+       self.speed = 40
 
    def update(self):
        self.rect.y -= self.speed
@@ -134,7 +137,7 @@ class Shot_vertical_down(Obj):
    def __init__(self, img, pos, *groups):
        super().__init__(img, pos, *groups)
 
-       self.speed = 20
+       self.speed = 40
 
    def update(self):
        self.rect.y += self.speed
@@ -147,7 +150,7 @@ class Shot_horizontal_left(Obj):
    def __init__(self, img, pos, *groups):
        super().__init__(img, pos, *groups)
 
-       self.speed = 20
+       self.speed = 40
 
    def update(self):
        self.rect.x -= self.speed
@@ -160,7 +163,7 @@ class Shot_horizontal_rigth(Obj):
    def __init__(self, img, pos, *groups):
        super().__init__(img, pos, *groups)
 
-       self.speed = 20
+       self.speed = 40
 
    def update(self):
        self.rect.x += self.speed
