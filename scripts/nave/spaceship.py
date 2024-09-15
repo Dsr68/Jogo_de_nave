@@ -19,15 +19,10 @@ class Spaceship(Obj):
         self.tiros = pygame.sprite.Group()
         self.ticks = 0
 
-        self.v_demange = 100
-        self.format_demage = str(self.v_demange)
-        self.demage = Text("assets/fonts/airstrike.ttf", 25, "Damage", "white", [30, 30])
-        self.demage_valor = Text("assets/fonts/airstrike.ttf", 25, self.format_demage + "%", "white", [160, 30])
+        self.demange = 100
+        self.fuel = 100
 
-        self.v_fuel = 100.00
-        self.format_fuel = "{:.2f}".format(self.v_fuel)
-        self.fuel = Text("assets/fonts/airstrike.ttf", 25, "Fuel", "white", [30, 60])
-        self.fuel_valor = Text("assets/fonts/airstrike.ttf", 25, self.format_fuel, "white", [160, 60])
+        self.tick_carregamento = 0
 
     def input(self):
 
@@ -95,9 +90,16 @@ class Spaceship(Obj):
 
     def cosume(self):
 
-        if self.v_fuel > 0:
-            self.v_fuel -= 0.01
-            self.fuel_valor.update(str(round(self.v_fuel, 2)))
+        if self.fuel > 0:
+            self.fuel -= 0.01
+
+    def abastecer(self):
+
+        self.tick_carregamento += 1
+        if self.fuel <  100:
+            self.fuel += 0.01
+        if self.fuel == 100:
+            self.tick_carregamento = 0
 
     def position_shot(self):
 
@@ -114,10 +116,6 @@ class Spaceship(Obj):
         self.input()
         self.move()
         self.limit()
-        self.demage.draw()
-        self.demage_valor.draw()
-        self.fuel.draw()
-        self.fuel_valor.draw()
 
 class Shot_vertical_up(Obj):
 
